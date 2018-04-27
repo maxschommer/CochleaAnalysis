@@ -1,0 +1,78 @@
+function res = solvingFourthOrderPDE()
+% initiate array
+m = 1000;    % number of time positions
+n = 100000;     % number of space positions
+
+totalTime = 5;
+dt = totalTime/m;
+totalDistance = 2*pi;
+dx = totalDistance/n;
+
+pos = zeros(m,n,3);                  % m is rows, n is columns
+x = linspace(0,totalDistance,n);     % x is vector of equally spaced distances spanning accross total distance n times
+pos(1,:,1) = sin(x);                 % setting position at time = 1
+%plot(pos(1,:,1))
+a = ones(n,1);                       % coefficient of uxx based on space
+b = .01 *ones(n,1);                  % coefficient of uxxxx based on space%
+% conditions = ones(m,n,3)/0;          
+% conditions(:,1,1) = 0;
+% conditions(:,m,1) = 0;
+time = linspace(0,totalTime,m);     
+
+%plot(x,sin(x))
+%hold on
+%plot(x,padDiff(padDiff(sin(x))))
+%plot(x(1,end-2),diff(sin(x),2)','ro')
+    function ans = solvingUtt(X)
+        p = polyfix(x,X,7,[0, 2*pi],[0, 0]);
+        res = polyder(polyder(p))
+        ans = polyval(res,x); %padDiff(padDiff(padDiff(padDiff(X))));
+    end
+
+    function ans = padDiff(X)
+
+    ans = diff(X)/dx;
+    ans(end+1)= 0;
+%     p = polyfix(x,ans, 7 );
+    
+    ans = polyval(p,x);
+    end
+
+for i = 1:m
+pos(i,:,3) = solvingUtt(pos(i,:,1));
+pos(i+1,:,2) = pos(i,:,2)+dt*pos(i,:,3);
+pos(i+1,:,1) = pos(i,:,1) + dt*pos(i+1,:,2);
+pos(i,1,1) = 0;
+pos(i,end,1)= 0;
+end
+
+for i = 1:m
+plot(x,pos(i,:,3), '-r')
+hold on
+plot(x, pos(i, :, 1), '-b')
+axis([0 2*pi -10 10])
+pause(.0001)
+clf
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+end
+
+
+
+
