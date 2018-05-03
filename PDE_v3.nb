@@ -1,0 +1,423 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     16803,        415]
+NotebookOptionsPosition[     15958,        393]
+NotebookOutlinePosition[     16301,        408]
+CellTagsIndexPosition[     16258,        405]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{"clearall", "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"\[CapitalOmega]", "=", 
+   RowBox[{"ImplicitRegion", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"0", "\[LessEqual]", "x", "\[LessEqual]", "10"}], "&&", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"-", ".2"}], "x"}], "\[LessEqual]", "y", "\[LessEqual]", 
+       RowBox[{".2", "x"}]}]}], " ", ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", "y"}], "}"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"uifWave", " ", "=", " ", 
+    RowBox[{
+     RowBox[{"NDSolveValue", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{
+            SubscriptBox["\[PartialD]", 
+             RowBox[{"t", ",", "t"}]], 
+            RowBox[{"u", "[", 
+             RowBox[{"t", ",", "x", ",", "y"}], "]"}]}], "-", " ", 
+           RowBox[{"D", "[", 
+            RowBox[{
+             RowBox[{"u", "[", 
+              RowBox[{"t", ",", "x", ",", "y"}], "]"}], ",", "x", ",", "x"}], 
+            "]"}], "-", 
+           RowBox[{"D", "[", 
+            RowBox[{
+             RowBox[{"u", "[", 
+              RowBox[{"t", ",", "x", ",", "y"}], "]"}], ",", "y", ",", "y"}], 
+            "]"}], "+", 
+           RowBox[{"10", "*", 
+            RowBox[{"x", "^", "2"}], "*", 
+            RowBox[{"D", "[", 
+             RowBox[{
+              RowBox[{"u", "[", 
+               RowBox[{"t", ",", "x", ",", "y"}], "]"}], ",", "x"}], 
+             "]"}]}]}], " ", "==", " ", "0"}], ",", " ", "\n", "     ", 
+         RowBox[{
+          RowBox[{"u", "[", 
+           RowBox[{"0", ",", " ", "x", ",", " ", "y"}], "]"}], " ", "==", " ", 
+          RowBox[{"Sin", "[", 
+           RowBox[{"2", "*", "Pi", "*", "x"}], "]"}]}], ",", " ", "\n", "\t", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["u", 
+            TagBox[
+             RowBox[{"(", 
+              RowBox[{"1", ",", "0", ",", "0"}], ")"}],
+             Derivative],
+            MultilineFunction->None], "[", 
+           RowBox[{"0", ",", " ", "x", ",", " ", "y"}], "]"}], " ", "==", " ",
+           "0"}], ",", " ", "\[IndentingNewLine]", 
+         RowBox[{"DirichletCondition", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"u", "[", 
+             RowBox[{"t", ",", " ", "x", ",", " ", "y"}], "]"}], " ", "==", 
+            " ", "0"}], ",", " ", "True"}], "]"}]}], "}"}], ",", " ", "\n", 
+       "    ", "u", ",", " ", 
+       RowBox[{"{", 
+        RowBox[{"t", ",", " ", "0", ",", " ", 
+         RowBox[{"2", " ", "\[Pi]"}]}], "}"}], ",", " ", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"x", ",", " ", "y"}], "}"}], " ", "\[Element]", " ", 
+        "\[CapitalOmega]"}]}], "]"}], " ", "//", " ", "Quiet"}]}], ";"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{"FindMaximum", "[", 
+    RowBox[{"uifWave", ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"0", ",", 
+         RowBox[{"2", "*", "Pi"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"0", ",", "1"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"-", ".2"}], ",", ".2"}], "}"}]}], "}"}]}], "]"}], 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{"Animate", "[", 
+  RowBox[{
+   RowBox[{"Plot3D", "[", 
+    RowBox[{
+     RowBox[{"uifWave", "[", 
+      RowBox[{"t", ",", "x", ",", "y"}], "]"}], ",", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"x", ",", "y"}], "}"}], "\[Element]", 
+      RowBox[{"uifWave", "[", "\"\<ElementMesh\>\"", "]"}]}], ",", 
+     RowBox[{"PlotRange", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "10000"}], ",", "10000"}], "}"}]}], ",", 
+     RowBox[{"Boxed", "\[Rule]", "False"}], ",", 
+     RowBox[{"Axes", "\[Rule]", "False"}], ",", 
+     RowBox[{"Mesh", "\[Rule]", "None"}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"t", ",", "0", ",", 
+     RowBox[{"2", "*", "Pi"}], ",", 
+     RowBox[{"Pi", "/", "10"}]}], "}"}]}], 
+  "]"}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{{3.7343157362626762`*^9, 3.7343157537589216`*^9}, {
+   3.7343157872945547`*^9, 3.7343158070334263`*^9}, {3.7343158421861224`*^9, 
+   3.7343160444820547`*^9}, {3.7343161082373238`*^9, 3.734316140913076*^9}, {
+   3.734316180222602*^9, 3.734316202107599*^9}, {3.734316321336864*^9, 
+   3.734316333820204*^9}, {3.734316451987171*^9, 3.7343165354561667`*^9}, {
+   3.734316589708737*^9, 3.7343167024060388`*^9}, {3.7343169504271297`*^9, 
+   3.7343169801509705`*^9}, 3.734317022203515*^9, {3.7343170596541834`*^9, 
+   3.7343171447082443`*^9}, {3.734317177151044*^9, 3.734317328762246*^9}, {
+   3.7343173997806187`*^9, 3.734317400782168*^9}},
+ CellLabel->
+  "In[109]:=",ExpressionUUID->"65d3ab91-4058-42ea-bc18-1747eece96d5"],
+
+Cell[BoxData["clearall"], "Output",
+ CellChangeTimes->{
+  3.7343157542164125`*^9, {3.734315787714711*^9, 3.734315807397935*^9}, {
+   3.734315842961834*^9, 3.7343158764368687`*^9}, {3.7343159102399936`*^9, 
+   3.734316044684432*^9}, 3.734316143083748*^9, {3.734316203542575*^9, 
+   3.7343162241995*^9}, 3.7343163349682884`*^9, 3.7343164198253317`*^9, {
+   3.734316452585039*^9, 3.734316477044044*^9}, {3.734316516480152*^9, 
+   3.734316549667391*^9}, {3.7343165911689663`*^9, 3.7343167029833407`*^9}, {
+   3.7343169599493866`*^9, 3.7343169804066505`*^9}, 3.734317022566478*^9, {
+   3.7343171021115775`*^9, 3.734317145303954*^9}, 3.734317177821768*^9, 
+   3.734317209440189*^9, 3.734317240708192*^9, {3.734317276466708*^9, 
+   3.73431732893771*^9}, 3.7343174010532084`*^9},
+ CellLabel->
+  "Out[109]=",ExpressionUUID->"495bd6ab-8fe8-4123-8885-5f41894fcbf8"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`t$$ = Rational[11, 10] Pi, Typeset`show$$ = 
+    True, Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{
+      Hold[$CellContext`t$$], 0, 2 Pi, Rational[1, 10] Pi}}, 
+    Typeset`size$$ = {906., {3., 9.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`t$103710$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, "Variables" :> {$CellContext`t$$ = 0}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`t$$, $CellContext`t$103710$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> Plot3D[
+        $CellContext`uifWave[$CellContext`t$$, $CellContext`x, \
+$CellContext`y], 
+        Element[{$CellContext`x, $CellContext`y}, 
+         $CellContext`uifWave["ElementMesh"]], PlotRange -> {-10000, 10000}, 
+        Boxed -> False, Axes -> False, Mesh -> None], 
+      "Specifications" :> {{$CellContext`t$$, 0, 2 Pi, Rational[1, 10] Pi, 
+         AppearanceElements -> {
+          "ProgressSlider", "PlayPauseButton", "FasterSlowerButtons", 
+           "DirectionButton"}}}, 
+      "Options" :> {
+       ControlType -> Animator, AppearanceElements -> None, DefaultBaseStyle -> 
+        "Animate", DefaultLabelStyle -> "AnimateLabel", SynchronousUpdating -> 
+        True, ShrinkingDelay -> 10.}, "DefaultOptions" :> {}],
+     ImageSizeCache->{957., {44., 50.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Animate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{
+  3.7343157542164125`*^9, {3.734315787714711*^9, 3.734315807397935*^9}, {
+   3.734315842961834*^9, 3.7343158764368687`*^9}, {3.7343159102399936`*^9, 
+   3.734316044684432*^9}, 3.734316143083748*^9, {3.734316203542575*^9, 
+   3.7343162241995*^9}, 3.7343163349682884`*^9, 3.7343164198253317`*^9, {
+   3.734316452585039*^9, 3.734316477044044*^9}, {3.734316516480152*^9, 
+   3.734316549667391*^9}, {3.7343165911689663`*^9, 3.7343167029833407`*^9}, {
+   3.7343169599493866`*^9, 3.7343169804066505`*^9}, 3.734317022566478*^9, {
+   3.7343171021115775`*^9, 3.734317145303954*^9}, 3.734317177821768*^9, 
+   3.734317209440189*^9, 3.734317240708192*^9, {3.734317276466708*^9, 
+   3.73431732893771*^9}, 3.7343174189683003`*^9},
+ CellLabel->
+  "Out[112]=",ExpressionUUID->"247e78fe-b241-456e-9171-7343553fbe95"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{"clearall", "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"\[CapitalOmega]", "=", 
+   RowBox[{"ImplicitRegion", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"0", "\[LessEqual]", "x", "\[LessEqual]", "1"}], "&&", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"-", ".2"}], "x"}], "\[LessEqual]", "y", "\[LessEqual]", 
+       RowBox[{".2", "x"}]}]}], " ", ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", "y"}], "}"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"uifWave", " ", "=", " ", 
+    RowBox[{
+     RowBox[{"NDSolveValue", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{
+            SubscriptBox["\[PartialD]", 
+             RowBox[{"t", ",", "t"}]], 
+            RowBox[{"u", "[", 
+             RowBox[{"t", ",", "x", ",", "y"}], "]"}]}], "-", " ", 
+           RowBox[{"D", "[", 
+            RowBox[{
+             RowBox[{"u", "[", 
+              RowBox[{"t", ",", "x", ",", "y"}], "]"}], ",", "x", ",", "x"}], 
+            "]"}], "-", 
+           RowBox[{"D", "[", 
+            RowBox[{
+             RowBox[{"u", "[", 
+              RowBox[{"t", ",", "x", ",", "y"}], "]"}], ",", "y", ",", "y"}], 
+            "]"}], "+", 
+           RowBox[{"4", "*", 
+            RowBox[{"D", "[", 
+             RowBox[{
+              RowBox[{"u", "[", 
+               RowBox[{"t", ",", "x", ",", "y"}], "]"}], ",", "x", ",", "x", 
+              ",", "x", ",", "x"}], "]"}]}]}], " ", "==", " ", "0"}], ",", 
+         " ", "\n", "     ", 
+         RowBox[{
+          RowBox[{"u", "[", 
+           RowBox[{"0", ",", " ", "x", ",", " ", "y"}], "]"}], " ", "==", " ", 
+          RowBox[{"Sin", "[", 
+           RowBox[{"2", "*", "Pi", "*", "x"}], "]"}]}], ",", " ", "\n", "\t", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["u", 
+            TagBox[
+             RowBox[{"(", 
+              RowBox[{"1", ",", "0", ",", "0"}], ")"}],
+             Derivative],
+            MultilineFunction->None], "[", 
+           RowBox[{"0", ",", " ", "x", ",", " ", "y"}], "]"}], " ", "==", " ",
+           "0"}], ",", " ", "\[IndentingNewLine]", 
+         RowBox[{"DirichletCondition", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"u", "[", 
+             RowBox[{"t", ",", " ", "x", ",", " ", "y"}], "]"}], " ", "==", 
+            " ", "0"}], ",", " ", "True"}], "]"}]}], "}"}], ",", " ", "\n", 
+       "    ", "u", ",", " ", 
+       RowBox[{"{", 
+        RowBox[{"t", ",", " ", "0", ",", " ", 
+         RowBox[{"2", " ", "\[Pi]"}]}], "}"}], ",", " ", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"x", ",", " ", "y"}], "}"}], " ", "\[Element]", " ", 
+        "\[CapitalOmega]"}]}], "]"}], " ", "//", " ", "Quiet"}]}], ";"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{"FindMaximum", "[", 
+    RowBox[{"uifWave", ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"0", ",", 
+         RowBox[{"2", "*", "Pi"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"0", ",", "1"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"-", ".2"}], ",", ".2"}], "}"}]}], "}"}]}], "]"}], 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{"Animate", "[", 
+  RowBox[{
+   RowBox[{"Plot3D", "[", 
+    RowBox[{
+     RowBox[{"uifWave", "[", 
+      RowBox[{"t", ",", "x", ",", "y"}], "]"}], ",", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"x", ",", "y"}], "}"}], "\[Element]", 
+      RowBox[{"uifWave", "[", "\"\<ElementMesh\>\"", "]"}]}], ",", 
+     RowBox[{"PlotRange", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "10000"}], ",", "10000"}], "}"}]}], ",", 
+     RowBox[{"Boxed", "\[Rule]", "False"}], ",", 
+     RowBox[{"Axes", "\[Rule]", "False"}], ",", 
+     RowBox[{"Mesh", "\[Rule]", "None"}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"t", ",", "0", ",", 
+     RowBox[{"2", "*", "Pi"}], ",", 
+     RowBox[{"Pi", "/", "10"}]}], "}"}]}], 
+  "]"}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{{3.7343174156976795`*^9, 3.734317422543783*^9}, {
+  3.7343174675741663`*^9, 3.7343174864425926`*^9}},
+ CellLabel->
+  "In[121]:=",ExpressionUUID->"6e636ce7-d8c7-48cb-9fd0-fbf2a8e5692e"],
+
+Cell[BoxData["clearall"], "Output",
+ CellChangeTimes->{
+  3.7343174335423093`*^9, {3.7343174680262938`*^9, 3.734317486907941*^9}},
+ CellLabel->
+  "Out[121]=",ExpressionUUID->"67203e7e-4eb3-4b9c-b808-68511653b355"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`t$$ = Rational[8, 5] Pi, Typeset`show$$ = 
+    True, Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{
+      Hold[$CellContext`t$$], 0, 2 Pi, Rational[1, 10] Pi}}, 
+    Typeset`size$$ = {906., {3., 9.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`t$105203$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, "Variables" :> {$CellContext`t$$ = 0}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`t$$, $CellContext`t$105203$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> Plot3D[
+        $CellContext`uifWave[$CellContext`t$$, $CellContext`x, \
+$CellContext`y], 
+        Element[{$CellContext`x, $CellContext`y}, 
+         $CellContext`uifWave["ElementMesh"]], PlotRange -> {-10000, 10000}, 
+        Boxed -> False, Axes -> False, Mesh -> None], 
+      "Specifications" :> {{$CellContext`t$$, 0, 2 Pi, Rational[1, 10] Pi, 
+         AppearanceElements -> {
+          "ProgressSlider", "PlayPauseButton", "FasterSlowerButtons", 
+           "DirectionButton"}}}, 
+      "Options" :> {
+       ControlType -> Animator, AppearanceElements -> None, DefaultBaseStyle -> 
+        "Animate", DefaultLabelStyle -> "AnimateLabel", SynchronousUpdating -> 
+        True, ShrinkingDelay -> 10.}, "DefaultOptions" :> {}],
+     ImageSizeCache->{957., {44., 50.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Animate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{
+  3.7343174335423093`*^9, {3.7343174680262938`*^9, 3.7343174869400473`*^9}},
+ CellLabel->
+  "Out[124]=",ExpressionUUID->"6438b835-e151-4197-af24-c7709f556342"]
+}, Open  ]]
+},
+WindowSize->{1280, 637},
+WindowMargins->{{-8, Automatic}, {Automatic, -8}},
+FrontEndVersion->"11.3 for Microsoft Windows (64-bit) (March 6, 2018)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 4741, 121, 214, "Input",ExpressionUUID->"65d3ab91-4058-42ea-bc18-1747eece96d5"],
+Cell[5324, 145, 854, 13, 32, "Output",ExpressionUUID->"495bd6ab-8fe8-4123-8885-5f41894fcbf8"],
+Cell[6181, 160, 2971, 56, 113, "Output",ExpressionUUID->"247e78fe-b241-456e-9171-7343553fbe95"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[9189, 221, 4204, 114, 214, "Input",ExpressionUUID->"6e636ce7-d8c7-48cb-9fd0-fbf2a8e5692e"],
+Cell[13396, 337, 213, 4, 32, "Output",ExpressionUUID->"67203e7e-4eb3-4b9c-b808-68511653b355"],
+Cell[13612, 343, 2330, 47, 113, "Output",ExpressionUUID->"6438b835-e151-4197-af24-c7709f556342"]
+}, Open  ]]
+}
+]
+*)
+
